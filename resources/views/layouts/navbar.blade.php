@@ -17,7 +17,7 @@
                         href="/employees">Employees</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link"
+                    <a class="nav-link {{ Request::routeIs('employees') ? 'active' : '' }}"
                         href="/companies">Companies</a>
                 </li>
             </ul>

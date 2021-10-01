@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -21,3 +22,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/employees', [EmployeeController::class, 'index'])->name('employees');
+Route::get('/companies', [CompanyController::class, 'index'])->name('companies');
+Route::get('/company/create', [CompanyController::class, 'create']);
+Route::post('/company/store', [CompanyController::class, 'store']);
