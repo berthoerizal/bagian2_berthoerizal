@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\EmployeesImport;
 use Illuminate\Http\Request;
 use App\Models\Employee;
 use App\Models\Company;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Excel;
 use PDF;
 
 class EmployeeController extends Controller
@@ -128,5 +131,36 @@ class EmployeeController extends Controller
         // return view('employee.pdf_view', ['emps' => $emps, 'title' => $title]);
         $pdf = PDF::loadView('employee.pdf_view', ['emps' => $emps, 'title' => $title])->setOptions(['defaultFont' => 'sans-serif']);
         return $pdf->download('employees.pdf');
+    }
+
+    public function import(Request $request)
+    {
+        $this->validate($request, [
+            'file' => 'required|mimes:csv,xls,xlsx'
+        ]);
+
+        $file = $request->file('file');
+
+        $nama_file = $file->hashName();
+
+        $import = new EmployeesImport();
+        Excel::import($import, $file);
+        $row_count = $import->getRowCount();
+
+        if ($row_count < 100) {
+            return redirect()->route('employees')->with(['failed' => 'Data cannot be less than 100.']);
+        }
+
+        $path = $file->storeAs('public/excel/', $nama_file);
+        $import = Excel::import($import, storage_path('app/public/excel/' . $nama_file));
+        Storage::delete($path);
+
+        if ($import) {
+            //redirect
+            return redirect()->route('employees')->with(['success' => 'Data success to import.']);
+        } else {
+            //redirect
+            return redirect()->route('employees')->with(['error' => 'Data failed to import.']);
+        }
     }
 }

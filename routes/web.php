@@ -30,6 +30,8 @@ Route::delete('/employees/{id}', [EmployeeController::class, 'destroy']);
 Route::get('/employees/search_employees', [EmployeeController::class, 'search_employees']);
 Route::get('/employees/pdf', [EmployeeController::class, 'createPDF']);
 
+Route::post('/employees/import', [EmployeeController::class, 'import'])->name('import_employees');
+
 Route::get('/companies', [CompanyController::class, 'index'])->name('companies');
 Route::get('/companies/create', [CompanyController::class, 'create']);
 Route::post('/companies', [CompanyController::class, 'store']);

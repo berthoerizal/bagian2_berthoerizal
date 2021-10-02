@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Employee;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class EmployeeFactory extends Factory
 {
@@ -24,7 +25,7 @@ class EmployeeFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->email(),
-            'company_id' => 1
+            'company_id' => $this->faker->numberBetween(1, 10)
         ];
     }
 }
