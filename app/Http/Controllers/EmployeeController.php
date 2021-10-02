@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Employee;
 use App\Models\Company;
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 class EmployeeController extends Controller
 {
@@ -114,5 +115,18 @@ class EmployeeController extends Controller
             session()->flash('success', 'Data success to update.');
             return redirect('/employees');
         }
+    }
+
+    public function createPDF()
+    {
+        $emps = DB::table('employees')
+            ->leftJoin('companies', 'employees.company_id', '=', 'companies.id')
+            ->select('employees.*', 'companies.name as company_name')
+            ->get();
+        $title = "Employees";
+
+        // return view('employee.pdf_view', ['emps' => $emps, 'title' => $title]);
+        $pdf = PDF::loadView('employee.pdf_view', ['emps' => $emps, 'title' => $title])->setOptions(['defaultFont' => 'sans-serif']);
+        return $pdf->download('employees.pdf');
     }
 }

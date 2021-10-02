@@ -27,6 +27,8 @@ Route::post('/employees', [EmployeeController::class, 'store']);
 Route::get('/employees/{id}/edit', [EmployeeController::class, 'edit']);
 Route::put('/employees/{id}', [EmployeeController::class, 'update']);
 Route::delete('/employees/{id}', [EmployeeController::class, 'destroy']);
+Route::get('/employees/search_employees', [EmployeeController::class, 'search_employees']);
+Route::get('/employees/pdf', [EmployeeController::class, 'createPDF']);
 
 Route::get('/companies', [CompanyController::class, 'index'])->name('companies');
 Route::get('/companies/create', [CompanyController::class, 'create']);
@@ -34,6 +36,5 @@ Route::post('/companies', [CompanyController::class, 'store']);
 Route::get('/companies/{id}/edit', [CompanyController::class, 'edit']);
 Route::put('/companies/{id}', [CompanyController::class, 'update']);
 Route::delete('/companies/{id}', [CompanyController::class, 'destroy']);
-
 Route::get('/companies/search_company', [CompanyController::class, 'search_company']);
-Route::get('/employees/search_employees', [EmployeeController::class, 'search_employees']);
+Route::get('/companies/{company_id}/pdf', [CompanyController::class, 'createPDF']);

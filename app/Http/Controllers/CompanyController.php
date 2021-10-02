@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Company;
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 class CompanyController extends Controller
 {
@@ -144,5 +145,20 @@ class CompanyController extends Controller
             session()->flash('success', 'Data success to delete');
             return redirect('/companies');
         }
+    }
+
+    public function createPDF($company_id)
+    {
+        $emps = DB::table('employees')
+            ->leftJoin('companies', 'employees.company_id', '=', 'companies.id')
+            ->where('company_id', $company_id)
+            ->select('employees.*', 'companies.name as company_name')
+            ->get();
+        $com = Company::find($company_id);
+        $title = "Employees";
+        $sub_title = $com->name;
+
+        $pdf = PDF::loadView('company.pdf_view', ['emps' => $emps, 'title' => $title, 'sub_title' => $sub_title])->setOptions(['defaultFont' => 'sans-serif']);
+        return $pdf->download('employees_company.pdf');
     }
 }

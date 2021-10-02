@@ -62,6 +62,7 @@
                                 </td>
                                 <td>{{$com->website}}</td>
                                 <td>
+                                    <a class="btn btn-info mb-1" href="/companies/{{$com->id}}/pdf"><i class="fas fa-file-pdf"></i> Export PDF</a>
                                     @include('company.delete_modal')
                                     <a href="/companies/{{$com->id}}/edit" class="btn btn-primary mb-1"><i class="fa fa-edit"></i> Edit</a>
                                 </td>

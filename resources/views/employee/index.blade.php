@@ -27,7 +27,7 @@
                 @endif
 
                 <div class="row">
-                    <div class="col-md-10">
+                    <div class="col-md-8">
                         <form action="/employees/search_employees" method="get">
                             <div class="input-group mb-3">
                               <input type="text" class="form-control" placeholder="Search here..." aria-label="Search here" aria-describedby="button-addon2" name="search" value="{{ old('search') }}">
@@ -37,7 +37,8 @@
                             </div>
                         </form>
                     </div>
-                    <a href="/employees/create" class="btn btn-primary mb-3 ml-3 float-right"><i class="fa fa-plus"></i> Add Employee</a>
+                    <a class="btn btn-info mb-3 ml-3" href="{{ URL::to('/employees/pdf') }}"><i class="fas fa-file-pdf"></i> Export PDF</a>
+                    <a href="/employees/create" class="btn btn-primary mb-3 ml-3"><i class="fa fa-plus"></i> Add Employee</a>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-bordered" style="width:100%">
