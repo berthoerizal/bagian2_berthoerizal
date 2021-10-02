@@ -148,7 +148,7 @@ class EmployeeController extends Controller
         $row_count = $import->getRowCount();
 
         if ($row_count < 100) {
-            return redirect()->route('employees')->with(['failed' => 'Data cannot be less than 100.']);
+            return redirect()->route('employees')->with(['failed' => "Data cannot be less than 100."]);
         }
 
         $path = $file->storeAs('public/excel/', $nama_file);

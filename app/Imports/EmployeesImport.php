@@ -15,12 +15,16 @@ class EmployeesImport implements ToModel
      */
     public function model(array $row)
     {
-        ++$this->rows;
-        return new Employee([
-            'name'     => $row['0'],
-            'email'    => $row['1'],
-            'company_id' => $row['2'],
-        ]);
+        $count_row = $this->rows++;
+        if ($count_row < 100) {
+            return null;
+        } else {
+            return new Employee([
+                'name'     => $row['0'],
+                'email'    => $row['1'],
+                'company_id' => $row['2'],
+            ]);
+        }
     }
 
     public function getRowCount(): int
