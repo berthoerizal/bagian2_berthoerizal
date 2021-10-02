@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Company;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class CompanyController extends Controller
 {
@@ -13,6 +13,23 @@ class CompanyController extends Controller
         $title = "Companies";
         $coms = Company::paginate(5);
         return view('company.index', ['title' => $title, 'coms' => $coms]);
+    }
+
+    public function search_company(Request $request)
+    {
+        $title = "Companies";
+        $search = $request->search;
+
+        if ($search) {
+            $coms = DB::table('companies')
+                ->where('name', 'like', "%" . $search . "%")
+                ->orWhere('email', 'like', "%" . $search . "%")
+                ->paginate(5);
+        } else {
+            return redirect('companies');
+        }
+
+        return view('company.index', ['coms' => $coms, 'title' => $title]);
     }
 
     public function create()
@@ -58,7 +75,7 @@ class CompanyController extends Controller
 
             if (!$com) {
                 session()->flash('error', 'Data failed to update.');
-                return redirect("/company/{{$id}}/edit");
+                return redirect("/companies/{{$id}}/edit");
             } else {
                 session()->flash('success', 'Data success to update.');
                 return redirect("/companies");
@@ -73,7 +90,7 @@ class CompanyController extends Controller
 
             if (!$com) {
                 session()->flash('error', 'Data failed to update.');
-                return redirect("/company/{{$id}}/edit");
+                return redirect("/companies/{{$id}}/edit");
             } else {
                 session()->flash('success', 'Data success to update.');
                 return redirect("/companies");
@@ -104,7 +121,7 @@ class CompanyController extends Controller
 
             if (!$com) {
                 session()->flash('error', 'Data failed to add.');
-                return redirect('/company/create');
+                return redirect('/companies/create');
             } else {
                 session()->flash('success', 'Data success to add.');
                 return redirect('/companies');

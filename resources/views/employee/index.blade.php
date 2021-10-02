@@ -10,6 +10,35 @@
         <hr>
         <div class="row">
             <div class="col-md-12">
+                @if(session()->has('success'))
+                    <div class="alert alert-success">
+                        {{ session()->get('success') }}
+                    </div>
+                @endif
+
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
+
+                <div class="row">
+                    <div class="col-md-10">
+                        <form action="/employees/search_employees" method="get">
+                            <div class="input-group mb-3">
+                              <input type="text" class="form-control" placeholder="Search here..." aria-label="Search here" aria-describedby="button-addon2" name="search" value="{{ old('search') }}">
+                              <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="submit">Search</button>
+                              </div>
+                            </div>
+                        </form>
+                    </div>
+                    <a href="/employees/create" class="btn btn-primary mb-3 ml-3 float-right"><i class="fa fa-plus"></i> Add Employee</a>
+                </div>
                 <div class="table-responsive">
                     <table class="table table-bordered" style="width:100%">
                         <thead>

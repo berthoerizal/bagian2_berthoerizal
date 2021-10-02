@@ -22,9 +22,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/employees', [EmployeeController::class, 'index'])->name('employees');
+Route::get('/employees/create', [EmployeeController::class, 'create']);
+Route::post('/employees', [EmployeeController::class, 'store']);
+
 Route::get('/companies', [CompanyController::class, 'index'])->name('companies');
-Route::get('/company/create', [CompanyController::class, 'create']);
-Route::post('/company/store', [CompanyController::class, 'store']);
-Route::get('/company/{id}/edit', [CompanyController::class, 'edit']);
-Route::put('/company/{id}', [CompanyController::class, 'update']);
-Route::delete('/company/{id}', [CompanyController::class, 'destroy']);
+Route::get('/companies/create', [CompanyController::class, 'create']);
+Route::post('/companies', [CompanyController::class, 'store']);
+Route::get('/companies/{id}/edit', [CompanyController::class, 'edit']);
+Route::put('/companies/{id}', [CompanyController::class, 'update']);
+Route::delete('/companies/{id}', [CompanyController::class, 'destroy']);
+
+Route::get('/companies/search_company', [CompanyController::class, 'search_company']);
+Route::get('/employees/search_employees', [EmployeeController::class, 'search_employees']);

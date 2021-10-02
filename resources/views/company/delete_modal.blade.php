@@ -17,7 +17,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <form action="/company/{{$com->id}}" method="POST">
+            <form action="/companies/{{$com->id}}" method="POST">
                 @method('DELETE')
                 @csrf
                 <input class="btn btn-danger" type="submit" value="Delete" />

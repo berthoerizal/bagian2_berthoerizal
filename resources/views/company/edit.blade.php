@@ -10,7 +10,7 @@
         <hr>
         <div class="row">
             <div class="col-md-12">
-                <form action="/company/{{$com->id}}" method="post" enctype="multipart/form-data">
+                <form action="/companies/{{$com->id}}" method="post" enctype="multipart/form-data">
                     @method('put')
                     @csrf
                     <div class="row">
