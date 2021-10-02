@@ -10,6 +10,21 @@
         <hr>
         <div class="row">
             <div class="col-md-12">
+                @if(session()->has('success'))
+                    <div class="alert alert-success">
+                        {{ session()->get('success') }}
+                    </div>
+                @endif
+
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
                 <a href="/company/create" class="btn btn-primary mb-3 float-right"><i class="fa fa-plus"></i> Add Company</a>
                 <div class="table-responsive">
                     <table class="table table-bordered" style="width:100%">
@@ -24,14 +39,18 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <?php $nomor=1; ?>
                             @foreach ($coms as $com)
                             <tr>
-                                <td>{{$com->id}}</td>
+                                <td>{{$nomor++}}.</td>
                                 <td>{{$com->name}}</td>
                                 <td>{{$com->email}}</td>
                                 <td><img src="{{asset('images/'.$com->logo)}}" alt"{{$com->name}}" width="100px"></td>
                                 <td>{{$com->website}}</td>
-                                <td></td>
+                                <td>
+                                    @include('company.delete_modal')
+                                    <a href="/company/{{$com->id}}/edit" class="btn btn-primary mb-1"><i class="fa fa-edit"></i> Edit</a>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>

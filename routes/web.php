@@ -25,3 +25,6 @@ Route::get('/employees', [EmployeeController::class, 'index'])->name('employees'
 Route::get('/companies', [CompanyController::class, 'index'])->name('companies');
 Route::get('/company/create', [CompanyController::class, 'create']);
 Route::post('/company/store', [CompanyController::class, 'store']);
+Route::get('/company/{id}/edit', [CompanyController::class, 'edit']);
+Route::put('/company/{id}', [CompanyController::class, 'update']);
+Route::delete('/company/{id}', [CompanyController::class, 'destroy']);

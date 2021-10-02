@@ -10,13 +10,14 @@
         <hr>
         <div class="row">
             <div class="col-md-12">
-                <form action="/company/store" method="post" enctype="multipart/form-data">
+                <form action="/company/{{$com->id}}" method="post" enctype="multipart/form-data">
+                    @method('put')
                     @csrf
                     <div class="row">
                         <div class="col-md-8">
                             <div class="form-group">
                               <label for="name">Name</label>
-                              <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" aria-describedby="name" placeholder="Enter Name" name="name" value="{{old('name')}}">
+                              <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" aria-describedby="name" placeholder="Enter Name" name="name" value="{{$com->name}}">
                               @error('name')
                               <div class="text-danger">{{$message}}</div>
                               @enderror
@@ -24,7 +25,7 @@
 
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" aria-describedby="email" placeholder="Enter Email" name="email" value="{{old('email')}}">
+                                <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" aria-describedby="email" placeholder="Enter Email" name="email" value="{{$com->email}}">
                                 @error('email')
                                 <div class="text-danger">{{$message}}</div>
                                 @enderror
@@ -32,7 +33,7 @@
 
                               <div class="form-group">
                                 <label for="website">Website</label>
-                                <input type="text" class="form-control @error('website') is-invalid @enderror" id="website" aria-describedby="website" placeholder="Enter Website" name="website" value="{{old('website')}}">
+                                <input type="text" class="form-control @error('website') is-invalid @enderror" id="website" aria-describedby="website" placeholder="Enter Website" name="website" value="{{$com->website}}">
                                 @error('website')
                                 <div class="text-danger">{{$message}}</div>
                                 @enderror
@@ -50,7 +51,11 @@
                             </div>
                         </div>
                         <div class="col-md-4">
+                            @if (!$com->logo)
                             <img src="{{ asset('images/default-image.jpg') }}" alt="" class="img-thumbnail img-preview">
+                            @else
+                            <img src="{{ asset('images/'.$com->logo) }}" alt="" class="img-thumbnail img-preview">
+                            @endif
                         </div>
                         <div class="col-md-12">
                             <button type="submit" class="btn btn-primary float-right mt-3 ml-3">Save</button>
