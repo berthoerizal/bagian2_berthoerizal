@@ -73,7 +73,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <div class="float-right">
+                    <div class="float-left">
                         {{$emps->links('pagination::bootstrap-4')}}
                     </div>
                 </div>
