@@ -56,8 +56,11 @@
                                 <td>{{$emp->id}}</td>
                                 <td>{{$emp->name}}</td>
                                 <td>{{$emp->email}}</td>
-                                <td>{{$emp->company_id}}</td>
-                                <td></td>
+                                <td>{{$emp->company_name}}</td>
+                                <td>
+                                    @include('employee.delete_modal')
+                                    <a href="/employees/{{$emp->id}}/edit" class="btn btn-primary mb-1"><i class="fa fa-edit"></i> Edit</a>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
