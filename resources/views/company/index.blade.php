@@ -51,10 +51,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $nomor=1; ?>
-                            @foreach ($coms as $com)
+                            @foreach ($coms as $key => $com)
                             <tr>
-                                <td>{{$nomor++}}.</td>
+                                <td>{{ $coms->firstItem() + $key }}.</td>
                                 <td>{{$com->name}}</td>
                                 <td>{{$com->email}}</td>
                                 <td>

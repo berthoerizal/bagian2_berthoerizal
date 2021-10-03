@@ -59,9 +59,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($emps as $emp)
+                            @foreach ($emps as $key => $emp)
                             <tr>
-                                <td>{{$emp->id}}</td>
+                                <td>{{ $emps->firstItem() + $key }}.</td>
                                 <td>{{$emp->name}}</td>
                                 <td>{{$emp->email}}</td>
                                 <td>{{$emp->company_name}}</td>
