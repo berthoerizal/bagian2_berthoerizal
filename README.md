@@ -9,7 +9,7 @@
 - Lalu Jalankan:
 - `composer install` 
 - `composer update` 
-- `php artisan migrate` -
+- `php artisan migrate`
 - `php artisan migrate:fresh --seed` 
 - `php artisan serve` 
 
