@@ -21,6 +21,17 @@
                         href="/companies">Companies</a>
                 </li>
             </ul>
+
+            @guest
+                <a href="{{route('login')}}" class="btn btn-outline-light me-2">Login</a>
+                <a href="{{route('register')}}" class="btn btn-warning me-2">Sign-up</a>
+                @else
+                <a href="#" class="btn btn-outline-light me-2 mr-2">{{Auth::user()->name}}</a>
+                <a href="{{route('logout')}}" class="btn btn-outline-light me-2" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                <form action="{{route('logout')}}" id="logout-form" method="post">
+                    @csrf
+                </form>
+            @endguest
         </div>
     </div>
 </nav>
