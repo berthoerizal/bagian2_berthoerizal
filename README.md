@@ -6,10 +6,14 @@
 - Nyalakan **MySQL**
 - Buat database dengan nama db_bagian2
 - Buka terminal atau cmd, lalu arahkan ke folder bagian2_berthoerizal
-- Jalankan 
-`composer install` / `composer update` / `php artisan migrate` / `php artisan migrate:fresh --seed` / `php artisan serve` 
+- Lalu Jalankan:
+- `composer install` 
+- `composer update` 
+- `php artisan migrate` -
+- `php artisan migrate:fresh --seed` 
+- `php artisan serve` 
 
 - Di browser jalankan 127.0.0.1:8000 atau http://localhost:8000
 - Masukkan 
-Email: admin@transisi.id
-Password: transisi
+- Email: admin@transisi.id
+- Password: transisi

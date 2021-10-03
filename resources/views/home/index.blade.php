@@ -17,7 +17,7 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <img src="{{ asset('images/image2.png') }}" width="100%" />
+                    <img src="{{ asset('images/undraw/undraw_quite_town_mg2q.png') }}" width="100%" />
                 </div>
             </div>
         </div>
@@ -26,7 +26,7 @@
         <div class="d-sm-block d-md-none">
             <div class="row mt-4">
                 <div class="col-md-6 mb-3">
-                    <img src="{{ asset('images/image2.png') }}" width="100%" />
+                    <img src="{{ asset('images/undraw/undraw_quite_town_mg2q.png') }}" width="100%" />
                 </div>
                 <div class="col-md-6">
                     <div class="d-flex h-100">
