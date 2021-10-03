@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row mt-5">
             <div class="col-md-12">
-                <h1 class="mt-4"><a href="/companies">{{$title}}</a> | {{$sub_title}}</h1>
+                <h1 class="mt-4"><a href="/employees">{{$title}}</a> | {{$sub_title}}</h1>
             </div>
         </div>
         <hr>
